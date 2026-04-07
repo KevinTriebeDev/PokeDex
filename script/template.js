@@ -13,7 +13,7 @@ const appTemplate = `
             <span class="dot green"></span>
           </div>
         </div>
-        <span class="hud-title">POKEDEX</span>
+        <a class="hud-title" href="index.html">POKEDEX</a>
         <span class="hud-status">&#x25CF; ONLINE</span>
       </div>
     </header>
@@ -121,3 +121,19 @@ const appTemplate = `
     </div>
   </div>
 `;
+
+function buildPokemonCardMarkup(theme,number,topHtml,visualHtml,bottomHtml,) {
+  return (
+    '<article class="pokemon-card ' +
+    theme +
+    '" data-pokemon-id="' +
+    number +
+    '" tabindex="0" role="button" aria-label="Pokemon ' +
+    number +
+    ' öffnen">' +
+    topHtml +
+    visualHtml +
+    bottomHtml +
+    "</article>"
+  );
+}

@@ -1,6 +1,7 @@
 ﻿html,
 body {
   height: 100%;
+  font-size: 16px;
 }
 
 .hud-app {
@@ -59,7 +60,7 @@ body {
 
 .loading-text {
   font-family: "Courier New", monospace;
-  font-size: 12px;
+  font-size: 16px;
   letter-spacing: 3px;
   color: #d6edf6;
   text-align: center;
@@ -166,7 +167,7 @@ body {
 .hud-status {
   font-family: "Courier New", monospace;
   color: #44ff66;
-  font-size: 10px;
+  font-size: 16px;
   letter-spacing: 2px;
   text-shadow: 0 0 8px #44ff66;
   flex-shrink: 0;
@@ -220,7 +221,7 @@ body {
 .display-label {
   font-family: "Courier New", monospace;
   color: rgba(0, 255, 136, 0.55);
-  font-size: 10px;
+  font-size: 16px;
   letter-spacing: 3px;
   white-space: nowrap;
 }
@@ -365,7 +366,7 @@ body {
   background: #0b2531;
   color: #d8edf5;
   font-family: "Courier New", monospace;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .pokemon-number {
@@ -444,7 +445,7 @@ body {
   align-items: center;
   justify-content: center;
   font-family: "Courier New", monospace;
-  font-size: 10px;
+  font-size: 16px;
   font-weight: 700;
   color: #f6fbfd;
   text-transform: uppercase;
@@ -639,7 +640,7 @@ body {
   padding: 9px 11px;
   color: #00ff88;
   font-family: "Courier New", monospace;
-  font-size: 12px;
+  font-size: 16px;
   letter-spacing: 1px;
   outline: none;
   box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
@@ -650,7 +651,7 @@ body {
 
 .search-input::placeholder {
   color: rgba(0, 255, 136, 0.3);
-  font-size: 11px;
+  font-size: 16px;
 }
 
 .search-input:focus {
@@ -695,7 +696,7 @@ body {
   border-radius: 7px;
   color: rgba(0, 255, 136, 0.55);
   font-family: "Courier New", monospace;
-  font-size: 10px;
+  font-size: 16px;
   letter-spacing: 3px;
   transition:
     background 0.2s,
@@ -854,7 +855,7 @@ body {
   background: rgba(6, 27, 38, 0.85);
   color: #eef8fd;
   font-family: "Courier New", monospace;
-  font-size: 13px;
+  font-size: 16px;
 }
 
 .dialog-image-wrap {
@@ -896,7 +897,7 @@ body {
   background: rgba(8, 47, 62, 0.95);
   color: #d9ecf6;
   font-family: "Courier New", monospace;
-  font-size: 13px;
+  font-size: 16px;
   cursor: pointer;
 }
 
@@ -948,7 +949,7 @@ body {
 .stat-name {
   color: #deedf5;
   font-family: "Courier New", monospace;
-  font-size: 14px;
+  font-size: 16px;
   text-transform: lowercase;
 }
 
@@ -991,7 +992,7 @@ body {
 .evo-error {
   color: #deedf5;
   font-family: "Courier New", monospace;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .evo-arrow {
@@ -1013,7 +1014,7 @@ body {
   border-radius: 50%;
   border: 2px solid rgba(0, 0, 0, 0.35);
   font-family: "Courier New", monospace;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: bold;
   color: rgba(255, 255, 255, 0.9);
   box-shadow: 0 3px 0 rgba(0, 0, 0, 0.4);
@@ -1100,7 +1101,7 @@ body {
   }
 
   .hud-title {
-    font-size: 12px;
+    font-size: 16px;
     letter-spacing: 2px;
   }
 
@@ -1162,7 +1163,7 @@ body {
 
 @media (min-width: 320px) and (max-width: 479px) {
   .hud-title {
-    font-size: 13px;
+    font-size: 16px;
     letter-spacing: 3px;
   }
 
@@ -1197,14 +1198,15 @@ body {
     inset: 0;
     align-items: flex-end;
     justify-content: center;
-    padding: 10px 10px 0;
+    padding: 12px 12px 1px;
+    border: solid 2px rgba(255, 255, 255, 0.04);
     background: rgba(0, 0, 0, 0.65);
   }
 
   .pokemon-dialog-card {
     width: 100%;
     height: min(100%, 600px);
-    border-radius: 20px 20px 0 0;
+    border-radius: 20px 20px 20px 20px;
     border-width: 3px 3px 0;
   }
 
@@ -1232,13 +1234,13 @@ body {
     inset: 0;
     align-items: flex-end;
     justify-content: center;
-    padding: 12px 12px 0;
+    padding: 12px 12px 1px;
   }
 
   .pokemon-dialog-card {
     width: min(520px, 100%);
     height: min(100%, 620px);
-    border-radius: 20px 20px 12px 12px;
+    border-radius: 20px 20px 20px 20px;
   }
 
   .pokemon-dialog:not(.hidden) .pokemon-dialog-card {
@@ -1276,18 +1278,18 @@ body {
 
   .search-input {
     padding: 7px 10px;
-    font-size: 11px;
+    font-size: 16px;
   }
 
   .search-btn {
     width: 34px;
     height: 34px;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .show-more-btn {
     padding: 7px;
-    font-size: 9px;
+    font-size: 16px;
     letter-spacing: 2px;
   }
 }

@@ -119,27 +119,7 @@ function createPokemonCardHtml(pokemon) {
   );
 }
 
-function buildPokemonCardMarkup(
-  theme,
-  number,
-  topHtml,
-  visualHtml,
-  bottomHtml,
-) {
-  return (
-    '<article class="pokemon-card ' +
-    theme +
-    '" data-pokemon-id="' +
-    number +
-    '" tabindex="0" role="button" aria-label="Pokemon ' +
-    number +
-    ' öffnen">' +
-    topHtml +
-    visualHtml +
-    bottomHtml +
-    "</article>"
-  );
-}
+
 
 function getOfficialArtworkUrl(pokemonDetail) {
   if (!pokemonDetail.sprites.other) {
