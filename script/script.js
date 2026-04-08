@@ -258,12 +258,35 @@ function init() {
   if (!renderAppTemplate()) {
     return;
   }
+  updateHudLayoutOffsets();
   pokemonGridElement = getElement("pokemon-grid");
   loadingScreenElement = getElement("loading-screen");
   displayContentElement = getElement("display-content");
   showMoreButtonElement = getElement("show-more-btn");
   dialogElement = getElement("pokemon-dialog");
+  addResizeEvent();
   startInitialLoad();
+}
+
+function updateHudLayoutOffsets() {
+  const headerElement = document.querySelector(".hud-header");
+  const controlsElement = document.querySelector(".hud-controls");
+  if (headerElement) {
+    document.documentElement.style.setProperty(
+      "--hud-header-height",
+      headerElement.offsetHeight + "px",
+    );
+  }
+  if (controlsElement) {
+    document.documentElement.style.setProperty(
+      "--hud-controls-height",
+      controlsElement.offsetHeight + "px",
+    );
+  }
+}
+
+function addResizeEvent() {
+  window.addEventListener("resize", updateHudLayoutOffsets);
 }
 
 function handleGridClick(event) {
