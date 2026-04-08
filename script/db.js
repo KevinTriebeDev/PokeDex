@@ -1,11 +1,13 @@
 const pokemonApiUrl = "https://pokeapi.co/api/v2/pokemon";
 const renderStep = 20;
 const searchPokemonLimit = 1000;
+const minSearchLength = 3;
 
 const textLoadMoreHtml = "&#x25BC; MEHR ANZEIGEN";
 const textLoading = "LADE ...";
 const textAllLoaded = "ALLES GELADEN";
-const textNoPokemonFound = "Keine Pokemon gefunden";
+const textNoPokemonFound = "Keine passenden Pokemon gefunden";
+const textMinSearchLength = "Bitte mindestens 3 Buchstaben eingeben";
 const textSearchError = "Fehler beim Suchen";
 
 const dialogTabNames = ["main", "stats", "evo"];

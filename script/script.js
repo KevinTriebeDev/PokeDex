@@ -13,6 +13,7 @@ let displayContentElement;
 let showMoreButtonElement;
 let dialogElement;
 let lastFocusedCard;
+let aHintDialogTimeoutId = null;
 
 function wait(milliseconds) {
   return new Promise(function (resolve) {
@@ -118,8 +119,6 @@ function createPokemonCardHtml(pokemon) {
     bottomHtml,
   );
 }
-
-
 
 function getOfficialArtworkUrl(pokemonDetail) {
   if (!pokemonDetail.sprites.other) {
@@ -351,15 +350,6 @@ function addTabButtonEvents() {
   }
 }
 
-function addSearchInputEvent() {
-  const searchInput = getElement("search-input");
-  if (searchInput) {
-    searchInput.addEventListener("input", function () {
-      searchPokemon(searchInput.value);
-    });
-  }
-}
-
 function addSearchButtonEvent() {
   const searchInput = getElement("search-input");
   const searchButton = getElement("search-btn");
@@ -368,6 +358,37 @@ function addSearchButtonEvent() {
       searchPokemon(searchInput.value);
     });
   }
+}
+
+function hideAFeatureHintDialog() {
+  const hintDialog = getElement("a-hint-dialog");
+  if (!hintDialog) {
+    return;
+  }
+  hintDialog.classList.add("hidden");
+}
+
+function showAFeatureHintDialog() {
+  const hintDialog = getElement("a-hint-dialog");
+  if (!hintDialog) {
+    return;
+  }
+  if (aHintDialogTimeoutId !== null) {
+    clearTimeout(aHintDialogTimeoutId);
+  }
+  hintDialog.classList.remove("hidden");
+  aHintDialogTimeoutId = setTimeout(function () {
+    hideAFeatureHintDialog();
+    aHintDialogTimeoutId = null;
+  }, 3000);
+}
+
+function addAButtonEvent() {
+  const aButton = getElement("a-btn");
+  if (!aButton) {
+    return;
+  }
+  aButton.addEventListener("click", showAFeatureHintDialog);
 }
 
 function addGridKeyboardEvent() {
@@ -390,8 +411,8 @@ function bindEvents() {
   addPrevButtonEvent();
   addNextButtonEvent();
   addTabButtonEvents();
-  addSearchInputEvent();
   addSearchButtonEvent();
+  addAButtonEvent();
 }
 
 function getRenderedPokemonIds() {
@@ -976,6 +997,13 @@ function searchPokemon(query) {
     resetSearch();
     return;
   }
+  if (normalizedQuery.length < minSearchLength) {
+    isSearchMode = true;
+    searchResults = [];
+    updateShowMoreButton();
+    showGridMessage(textMinSearchLength);
+    return;
+  }
   isSearchMode = true;
   updateShowMoreButton();
   setDisplayLoadingState(true);
@@ -996,7 +1024,7 @@ function findMatchingPokemon(query, pokemonList) {
   const matches = [];
   for (let i = 0; i < pokemonList.length; i++) {
     const pokemon = pokemonList[i];
-    if (pokemon.name.toLowerCase().indexOf(query) !== -1) {
+    if (pokemon.name.toLowerCase().startsWith(query)) {
       matches.push(pokemon);
     }
   }

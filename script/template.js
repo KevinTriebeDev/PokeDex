@@ -37,6 +37,10 @@ const appTemplate = `
               <span class="loading-text">POKEDEX WIRD GELADEN</span>
             </div>
           </div>
+          <div class="a-hint-dialog hidden" id="a-hint-dialog" role="status" aria-live="polite">
+            <span class="a-hint-title">A-FUNKTION</span>
+            <span class="a-hint-text">Diese Funktion erscheint bald. Bitte spaeter wiederkommen.</span>
+          </div>
           <div class="pokemon-grid" id="pokemon-grid"></div>
 
           <div class="pokemon-dialog hidden" id="pokemon-dialog">
@@ -85,7 +89,7 @@ const appTemplate = `
         <div class="display-footer">
           <div class="corner-bracket bl"></div>
           <div class="corner-bracket br"></div>
-          <span class="status-text">NR. --&nbsp;&nbsp;&nbsp;NAME: --------&nbsp;&nbsp;&nbsp;TYP: ------</span>
+          <span class="status-text">HINWEIS: MIT B ZUR STARTSEITE (&nbsp;<a href="index.html">index.html</a>&nbsp;)</span>
         </div>
       </div>
     </main>
@@ -108,8 +112,8 @@ const appTemplate = `
           </div>
 
           <div class="ab-buttons">
-            <button class="ab-btn b">B</button>
-            <button class="ab-btn a">A</button>
+            <button class="ab-btn b" onclick="window.location.href='index.html'">B</button>
+            <button class="ab-btn a" id="a-btn">A</button>
           </div>
         </div>
 
@@ -122,7 +126,13 @@ const appTemplate = `
   </div>
 `;
 
-function buildPokemonCardMarkup(theme,number,topHtml,visualHtml,bottomHtml,) {
+function buildPokemonCardMarkup(
+  theme,
+  number,
+  topHtml,
+  visualHtml,
+  bottomHtml,
+) {
   return (
     '<article class="pokemon-card ' +
     theme +
