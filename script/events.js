@@ -26,7 +26,9 @@ function findPokemonCardElement(startElement) {
 
 function addShowMoreEvent() {
   if (showMoreButtonElement) {
-    showMoreButtonElement.addEventListener("click", loadMorePokemon);
+    showMoreButtonElement.addEventListener("click", function () {
+      loadMorePokemon(true);
+    });
   }
 }
 
@@ -89,38 +91,27 @@ function addSearchButtonEvent() {
     searchButton.addEventListener("click", function () {
       searchPokemon(searchInput.value);
     });
+    searchInput.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        searchPokemon(searchInput.value);
+      }
+    });
   }
 }
 
-function hideAFeatureHintDialog() {
-  const hintDialog = getElement("a-hint-dialog");
-  if (!hintDialog) {
+function addBButtonEvent() {
+  const backButton = getElement("b-btn");
+  if (!backButton) {
     return;
   }
-  hintDialog.classList.add("hidden");
+  backButton.addEventListener("click", resetSearch);
 }
 
-function showAFeatureHintDialog() {
-  const hintDialog = getElement("a-hint-dialog");
-  if (!hintDialog) {
+function addDisplayScrollEvent() {
+  if (!displayContentElement) {
     return;
   }
-  if (aHintDialogTimeoutId !== null) {
-    clearTimeout(aHintDialogTimeoutId);
-  }
-  hintDialog.classList.remove("hidden");
-  aHintDialogTimeoutId = setTimeout(function () {
-    hideAFeatureHintDialog();
-    aHintDialogTimeoutId = null;
-  }, 3000);
-}
-
-function addAButtonEvent() {
-  const aButton = getElement("a-btn");
-  if (!aButton) {
-    return;
-  }
-  aButton.addEventListener("click", showAFeatureHintDialog);
+  displayContentElement.addEventListener("scroll", storeBrowseScrollPosition);
 }
 
 function addGridKeyboardEvent() {
@@ -137,6 +128,7 @@ function bindEvents() {
   addShowMoreEvent();
   addGridClickEvent();
   addGridKeyboardEvent();
+  addDisplayScrollEvent();
   addDialogKeyboardEvent();
   addDialogOverlayClickEvent();
   addCloseButtonEvent();
@@ -144,5 +136,5 @@ function bindEvents() {
   addNextButtonEvent();
   addTabButtonEvents();
   addSearchButtonEvent();
-  addAButtonEvent();
+  addBButtonEvent();
 }

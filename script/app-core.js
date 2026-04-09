@@ -13,7 +13,7 @@ let displayContentElement;
 let showMoreButtonElement;
 let dialogElement;
 let lastFocusedCard;
-let aHintDialogTimeoutId = null;
+let lastBrowseScrollTop = 0;
 
 function wait(milliseconds) {
   return new Promise(function (resolve) {
@@ -236,6 +236,38 @@ function setDisplayLoadingState(isLoading) {
   loadingScreenElement.classList.add("hidden");
 }
 
+function scrollDisplayContentToBottom() {
+  if (!displayContentElement) {
+    return;
+  }
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      displayContentElement.scrollTop = displayContentElement.scrollHeight;
+      if (!isSearchMode) {
+        lastBrowseScrollTop = displayContentElement.scrollTop;
+      }
+    });
+  });
+}
+
+function storeBrowseScrollPosition() {
+  if (!displayContentElement || isSearchMode) {
+    return;
+  }
+  lastBrowseScrollTop = displayContentElement.scrollTop;
+}
+
+function restoreBrowseScrollPosition() {
+  if (!displayContentElement) {
+    return;
+  }
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      displayContentElement.scrollTop = lastBrowseScrollTop;
+    });
+  });
+}
+
 function resetAppState() {
   renderedPokemonCount = 0;
   isLoadingPokemon = false;
@@ -245,6 +277,7 @@ function resetAppState() {
   searchResults = [];
   isSearchMode = false;
   currentSearchText = "";
+  lastBrowseScrollTop = 0;
 }
 
 function renderAppTemplate() {
@@ -260,7 +293,8 @@ function startInitialLoad() {
   bindEvents();
   setDisplayLoadingState(true);
   updateShowMoreButton();
-  loadMorePokemon();
+  updateSearchBackButton();
+  loadMorePokemon(false);
 }
 
 function init() {

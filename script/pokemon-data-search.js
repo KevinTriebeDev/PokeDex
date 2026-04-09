@@ -47,7 +47,7 @@ function finishPokemonLoading() {
   updateShowMoreButton();
 }
 
-async function loadMorePokemon() {
+async function loadMorePokemon(shouldKeepBottomScroll) {
   if (isLoadingPokemon || !hasMorePokemon) {
     return;
   }
@@ -57,6 +57,9 @@ async function loadMorePokemon() {
   appendPokemonToGrid(nextPokemon);
   saveLoadedPokemon(nextPokemon);
   finishPokemonLoading();
+  if (shouldKeepBottomScroll) {
+    scrollDisplayContentToBottom();
+  }
 }
 
 function hideShowMoreButton() {
@@ -98,16 +101,35 @@ function updateShowMoreButtonState(showMoreButton) {
   showMoreButton.innerHTML = textLoadMoreHtml;
 }
 
+function updateSearchBackButton() {
+  const backButton = getElement("b-btn");
+  const hasActiveSearch = isSearchMode || currentSearchText !== "";
+  if (!backButton) {
+    return;
+  }
+  backButton.disabled = !hasActiveSearch;
+  backButton.setAttribute("aria-disabled", String(!hasActiveSearch));
+}
+
 function resetSearch() {
+  const searchInput = getElement("search-input");
   isSearchMode = false;
   searchResults = [];
   currentSearchText = "";
+  if (searchInput) {
+    searchInput.value = "";
+  }
   renderPokemonGrid(loadedPokemonList);
+  restoreBrowseScrollPosition();
   updateShowMoreButton();
+  updateSearchBackButton();
 }
 
 function searchPokemon(query) {
   const normalizedQuery = query.toLowerCase().trim();
+  if (!isSearchMode) {
+    storeBrowseScrollPosition();
+  }
   currentSearchText = normalizedQuery;
   if (normalizedQuery === "") {
     resetSearch();
@@ -117,11 +139,13 @@ function searchPokemon(query) {
     isSearchMode = true;
     searchResults = [];
     updateShowMoreButton();
+    updateSearchBackButton();
     showGridMessage(textMinSearchLength);
     return;
   }
   isSearchMode = true;
   updateShowMoreButton();
+  updateSearchBackButton();
   setDisplayLoadingState(true);
   searchPokemonInApi(normalizedQuery);
 }
@@ -140,7 +164,7 @@ function findMatchingPokemon(query, pokemonList) {
   const matches = [];
   for (let i = 0; i < pokemonList.length; i++) {
     const pokemon = pokemonList[i];
-    if (pokemon.name.toLowerCase().startsWith(query)) {
+    if (pokemon.name.toLowerCase().includes(query)) {
       matches.push(pokemon);
     }
   }
@@ -159,6 +183,7 @@ async function loadSearchResultDetails(matchList) {
 function applySearchResults(detailedPokemonList) {
   searchResults = detailedPokemonList;
   renderPokemonGrid(searchResults);
+  updateSearchBackButton();
 }
 
 function finishSearch(query) {
