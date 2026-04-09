@@ -207,6 +207,13 @@ body {
   text-align: center;
 }
 
+.hud-title:hover {
+  text-shadow:
+    0 0 16px rgba(255, 255, 255, 0.8),
+    0 4px 8px rgba(0, 0, 0, 0.6);
+    transform: scale(1.02);
+}
+
 .hud-status {
   font-family: "Courier New", monospace;
   color: #44ff66;
@@ -510,83 +517,83 @@ body {
 }
 
 .pokemon-card.grass .pokemon-visual {
-  background: linear-gradient(180deg, #7ed957 0%, #6fca4e 100%);
+  background: linear-gradient(180deg, #7ed957 0%, #1a4d07 100%);
 }
 
 .pokemon-card.fire .pokemon-visual {
-  background: linear-gradient(180deg, #ff5a2a 0%, #ff4326 100%);
+  background: linear-gradient(180deg, #ff5a2a 0%, #440e05 100%);
 }
 
 .pokemon-card.water .pokemon-visual {
-  background: linear-gradient(180deg, #61a6ff 0%, #4c92f1 100%);
+  background: linear-gradient(180deg, #61a6ff 0%, #092b5c 100%);
 }
 
 .pokemon-card.bug .pokemon-visual {
-  background: linear-gradient(180deg, #becf2b 0%, #a9bb20 100%);
+  background: linear-gradient(180deg, #becf2b 0%, #343a04 100%);
 }
 
 .pokemon-card.poison .pokemon-visual {
-  background: linear-gradient(180deg, #c46ad8 0%, #994bb5 100%);
+  background: linear-gradient(180deg, #c46ad8 0%, #3a074d 100%);
 }
 
 .pokemon-card.flying .pokemon-visual {
-  background: linear-gradient(180deg, #a4b8ff 0%, #7d91df 100%);
+  background: linear-gradient(180deg, #a4b8ff 0%, #081546 100%);
 }
 
 .pokemon-card.normal .pokemon-visual {
-  background: linear-gradient(180deg, #cbbfa8 0%, #b09f85 100%);
+  background: linear-gradient(180deg, #cbbfa8 0%, #3d2807 100%);
 }
 
 .pokemon-card.electric .pokemon-visual {
-  background: linear-gradient(180deg, #ffd84f 0%, #f1bd23 100%);
+  background: linear-gradient(180deg, #ffd84f 0%, #463609 100%);
 }
 
 .pokemon-card.ground .pokemon-visual {
-  background: linear-gradient(180deg, #e0bf79 0%, #c89a4f 100%);
+  background: linear-gradient(180deg, #e0bf79 0%, #533709 100%);
 }
 
 .pokemon-card.fairy .pokemon-visual {
-  background: linear-gradient(180deg, #ffb5d7 0%, #e589b9 100%);
+  background: linear-gradient(180deg, #ffb5d7 0%, #460a29 100%);
 }
 
 .type-badge.grass {
-  background: linear-gradient(180deg, #8bda66 0%, #5aa43b 100%);
+  background: linear-gradient(180deg, #8bda66 0%, #194109 100%);
 }
 
 .type-badge.poison {
-  background: linear-gradient(180deg, #b96ac3 0%, #8a4792 100%);
+  background: linear-gradient(180deg, #b96ac3 0%, #35093a 100%);
 }
 
 .type-badge.fire {
-  background: linear-gradient(180deg, #ff7b45 0%, #d94e25 100%);
+  background: linear-gradient(180deg, #ff7b45 0%, #46190b 100%);
 }
 
 .type-badge.flying {
-  background: linear-gradient(180deg, #a7b8ff 0%, #7588d3 100%);
+  background: linear-gradient(180deg, #a7b8ff 0%, #091547 100%);
 }
 
 .type-badge.water {
-  background: linear-gradient(180deg, #6cb9ff 0%, #3b78d3 100%);
+  background: linear-gradient(180deg, #6cb9ff 0%, #0b2041 100%);
 }
 
 .type-badge.bug {
-  background: linear-gradient(180deg, #d6e05c 0%, #98a82a 100%);
+  background: linear-gradient(180deg, #d6e05c 0%, #444d09 100%);
 }
 
 .type-badge.normal {
-  background: linear-gradient(180deg, #d8c8ae 0%, #ae9675 100%);
+  background: linear-gradient(180deg, #d8c8ae 0%, #523308 100%);
 }
 
 .type-badge.electric {
-  background: linear-gradient(180deg, #ffe56e 0%, #d7ab22 100%);
+  background: linear-gradient(180deg, #ffe56e 0%, #4e3d07 100%);
 }
 
 .type-badge.ground {
-  background: linear-gradient(180deg, #edcf8d 0%, #b38338 100%);
+  background: linear-gradient(180deg, #edcf8d 0%, #4e340b 100%);
 }
 
 .type-badge.fairy {
-  background: linear-gradient(180deg, #ffc6e1 0%, #d985af 100%);
+  background: linear-gradient(180deg, #ffc6e1 0%, #4d0a2b 100%);
 }
 
 .display-footer {
