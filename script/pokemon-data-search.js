@@ -102,11 +102,19 @@ function updateShowMoreButtonState(showMoreButton) {
 }
 
 function updateSearchBackButton() {
+  const backButtonWrapper = document.querySelector(".ab-buttons");
   const backButton = getElement("b-btn");
   const hasActiveSearch = isSearchMode || currentSearchText !== "";
-  if (!backButton) {
+  if (!backButton || !backButtonWrapper) {
     return;
   }
+  if (!hasActiveSearch) {
+    backButtonWrapper.style.display = "none";
+    backButton.disabled = true;
+    backButton.setAttribute("aria-disabled", "true");
+    return;
+  }
+  backButtonWrapper.style.display = "";
   backButton.disabled = !hasActiveSearch;
   backButton.setAttribute("aria-disabled", String(!hasActiveSearch));
 }
