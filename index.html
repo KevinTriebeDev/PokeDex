@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PokeDex</title>
+    <title>PokeDex PWA</title>
     <link rel="stylesheet" href="css/standart.css" />
     <link rel="stylesheet" href="css/backround.css" />
     <link rel="stylesheet" href="css/styles.css" />
@@ -15,6 +15,23 @@
     <script src="script/pokemon-data-search.js" defer></script>
     <script src="script/events.js" defer></script>
     <link rel="icon" type="image/x-icon" href="./asstes/img/favicon.png" />
+    <link rel="apple-touch-icon" href="./asstes/img/start-logo.png" />
+    <link rel="manifest" href="./manifest.json" />
+    <meta name="theme-color" content="#c0392b" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="PokeDex" />
   </head>
-  <body onload="init()"></body>
+  <body onload="init()">
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./sw.js");
+        });
+      }
+    </script>
+  </body>
 </html>
